@@ -23,7 +23,8 @@
   }
 
   $retValues = [
-    'date' => $tableValues[8][0],
+//    'date' => $tableValues[8][0],
+    $tableValues[0][0] => $tableValues[8][0],
     $tableValues[0][1] => $tableValues[8][1],
     $tableValues[0][2] => $tableValues[8][2],
     $tableValues[0][3] => $tableValues[8][3],
