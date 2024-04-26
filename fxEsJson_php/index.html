@@ -1,0 +1,35 @@
+<html>
+<head>
+</head>
+
+
+<body>
+  <h1>
+    NICT スポラディックE層情報を JSON形式で取得
+  </h1>
+  <h2>
+    NICT 'fxEs' values（JSON format)
+  </h2>
+
+  <div>
+    <a href="fxEsNowJSON.php">最新fxEs</a><br />
+    <a href="fxEsJSON.php">過去2時間fxEs その1</a><br />
+    <a href="fxEsJSON2.php">過去2時間fxEs その2</a><br />
+  </div>
+
+<div>
+  現在時刻: <span id="d2">&nbsp;</span>
+
+</div>
+
+</body>
+
+<script>
+  setInterval(function() {
+    document.getElementById("d2").innerHTML = new Date().toLocaleString();
+  }, 1000);
+
+
+</script>
+
+</html>
