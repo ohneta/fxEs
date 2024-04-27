@@ -1,20 +1,24 @@
 <!--
 	FxEsInfo.svelte
+  fxEsデータを定期的に取得して表示する
 -->
 <script lang="ts">
   import { onMount } from "svelte";
 
   //------------------------
+  // fxEsJSON 取得URL
 	const url = "https://service.moyurani.com/fxes/fxEsJSON.php?from=sample";
 
+  // fxEsJSONデータ形式
   interface FxEsJSON {
     DateTimeJST: string;
     Okinawa: string;
     Yamagawa: string;
     Kokubunji: string;
     Wakkanai: string;
-  };
+  }
 
+  // 表示データ形式
   interface Item {
     datetime: string;
     okinawa: string;
@@ -24,39 +28,50 @@
   }
 
   //------------------------
-
-  let itemDefaultValue: Item = {
-      datetime: 'xxx',
-      okinawa: '----',
-      yamagawa: '----',
-      kokubunji: '----',
-      wakkanai: '----',
-    };
-
-  let items: Array<Item> = new Array(8).fill(itemDefaultValue);
+  // 初期値
   let gotFxEsDateTime: string = "***";
+  let items: Array<Item> = new Array(8).fill({
+    datetime: 'xxx',
+    okinawa: '----',
+    yamagawa: '----',
+    kokubunji: '----',
+    wakkanai: '----',
+  })
 
+  // データを取得する間隔の秒数
+  const intervalTimeSec = 1 * 60;
+
+  //------------------------------------------------
+  // 
   onMount(async () => {
+    // データを取得して表示
+    getFxEsJSON(url);
+
+    // 定期的にデータを取得して表示
+    let intervalId = setInterval(() => {
       getFxEsJSON(url);
+    }, intervalTimeSec * 1000);
+	})
 
-      let intervalId = setInterval(() => {
-        getFxEsJSON(url);
-      }, 1 * 60 * 1000);
-	});
-
-  async function getFxEsJSON(url: string): void {
+  /**
+   * fxEsを取得して表示する。
+   * 
+   * @param url fxEsJsonを返すURL
+   * @return void
+   */
+  const	getFxEsJSON = async (url: string) => {
     gotFxEsDateTime = new Date().toLocaleString("ja"); 
-
 		const fxEsJson = await getData(url);
     fxEsJsonToView(fxEsJson);
   }
 
-  //------------------------------------------------
   /**
-  * 
-  * @param fxEsJson
+  * fsEx JSON形式データを　items[]に設定。items[]はリアクティブ
+  *
+  * @param fxEsJson fsEx JSON形式データ
+  * @return void
   */
-  const fxEsJsonToView = function(fxEsJson: FxEsJSON[]) {
+  const fxEsJsonToView = (fxEsJson: FxEsJSON[]): void => {
     fxEsJson.map((item: FxEsJSON, index: number) => {
       items[index] = {
         datetime: item.DateTimeJST,
@@ -68,12 +83,13 @@
     });
   }
 
-  //------------------------------------------------
   /**
+   * fsExの値を取得
    * 
    * @param url string fsExのURL
+   * @return Promise<FxEsJSON[]>
    */
-	async function getData(url: string): FxEsJSON[] {
+  const getData = async (url: string): Promise<FxEsJSON[]> => {
 		const response: any = await fetch(url, {
 				method: "GET",
 				mode: "cors",
@@ -107,11 +123,11 @@
 
             {#if items[i].okinawa == '----'}
               <td class="nonFreq">{items[i].okinawa}</td>
-            {:else if items[i].okinawa > 9}
+            {:else if Number(items[i].okinawa) > 9}
               <td class="over9Freq">{items[i].okinawa}</td>
-            {:else if items[i].okinawa > 8}
+            {:else if Number(items[i].okinawa) > 8}
               <td class="over8Freq">{items[i].okinawa}</td>
-            {:else if items[i].okinawa > 7}
+            {:else if Number(items[i].okinawa) > 7}
               <td class="over7Freq">{items[i].okinawa}</td>
             {:else}
               <td class="under7Freq">{items[i].okinawa}</td>
@@ -119,11 +135,11 @@
 
             {#if items[i].yamagawa == '----'}
               <td class="nonFreq">{items[i].yamagawa}</td>
-            {:else if items[i].yamagawa > 9}
+            {:else if Number(items[i].yamagawa) > 9}
               <td class="over9Freq">{items[i].yamagawa}</td>
-            {:else if items[i].yamagawa > 8}
+            {:else if Number(items[i].yamagawa) > 8}
               <td class="over8Freq">{items[i].yamagawa}</td>
-            {:else if items[i].yamagawa > 7}
+            {:else if Number(items[i].yamagawa) > 7}
               <td class="over7Freq">{items[i].yamagawa}</td>
             {:else}
               <td class="under7Freq">{items[i].yamagawa}</td>
@@ -131,11 +147,11 @@
 
             {#if items[i].kokubunji == '----'}
               <td class="nonFreq">{items[i].kokubunji}</td>
-            {:else if items[i].kokubunji > 9}
+            {:else if Number(items[i].kokubunji) > 9}
               <td class="over9Freq">{items[i].kokubunji}</td>
-            {:else if items[i].kokubunji > 8}
+            {:else if Number(items[i].kokubunji) > 8}
               <td class="over8Freq">{items[i].kokubunji}</td>
-            {:else if items[i].kokubunji > 7}
+            {:else if Number(items[i].kokubunji) > 7}
               <td class="over7Freq">{items[i].kokubunji}</td>
             {:else}
               <td class="under7Freq">{items[i].kokubunji}</td>
@@ -143,11 +159,11 @@
 
             {#if items[i].wakkanai == '----'}
               <td class="nonFreq">{items[i].wakkanai}</td>
-            {:else if items[i].wakkanai > 9}
+            {:else if Number(items[i].wakkanai) > 9}
               <td class="over9Freq">{items[i].wakkanai}</td>
-            {:else if items[i].wakkanai > 8}
+            {:else if Number(items[i].wakkanai) > 8}
               <td class="over8Freq">{items[i].wakkanai}</td>
-            {:else if items[i].wakkanai > 7}
+            {:else if Number(items[i].wakkanai) > 7}
               <td class="over7Freq">{items[i].wakkanai}</td>
             {:else}
               <td class="under7Freq">{items[i].wakkanai}</td>
@@ -159,7 +175,6 @@
 </div>
 
 <style>
-
 .module {
 }
 
