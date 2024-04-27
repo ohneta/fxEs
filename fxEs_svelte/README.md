@@ -1,38 +1,29 @@
-# create-svelte
+# fxEs_svelte
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+xEsJson_php/fxEsJSON.php から取得したfxEs情報をweb表示するためのサンプルです。
 
-## Creating a project
+ページの作成はsvelte4/TypeScriptで書かれています。
 
-If you're seeing this, you've probably already done this step. Congrats!
+fxEsJson_phpのfxEsJSON.phpを1分毎にアクセスし表示します。
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## 開発環境
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+npm か yarnを使用して依存関係をインストールしたら開発環境サーバを起動します。
 
 ```bash
 npm run dev
 
-# or start the server and open the app in a new browser tab
+# webブラウザと同時に実行する場合
 npm run dev -- --open
 ```
 
-## Building
+## ビルド
 
-To create a production version of your app:
+実行するにはnpmを使ってビルドします。
+
+buildディレクトリにできたファイルをすべてwebサーバのドキュメントルートに設置すると動作します。
 
 ```bash
 npm run build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
