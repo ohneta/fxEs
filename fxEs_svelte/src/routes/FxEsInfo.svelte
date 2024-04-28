@@ -63,7 +63,15 @@
    * @return void
    */
   const	getFxEsJSON = async (url: string) => {
-    gotFxEsDateTime = new Date().toLocaleString("ja"); 
+    gotFxEsDateTime = new Date().toLocaleDateString("ja-JP", {
+                                                      year: "numeric",
+                                                      month: "2-digit",
+                                                      day: "2-digit",
+                                                      hour: "2-digit",
+                                                      minute: "2-digit",
+                                                      second: "2-digit",
+     })
+
 		const fxEsJson = await getData(url);
     fxEsJsonToView(fxEsJson);
   }
@@ -193,13 +201,14 @@
 .fxEsDateTime {
 	color: #33f;
 	background-color: #fff;
-	font-size: 1rem;
+	font-size: 0.8rem;
 }
 
 .fxEsDateTime .dateTime {
 	color: #f08;
 	background-color: #fff;
-	font-size: 1.2rem;
+	font-size: 1rem;
+font-weight: bold;
 }
 
 .infos {
