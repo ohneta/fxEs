@@ -30,6 +30,7 @@
   //------------------------
   // 初期値
   let gotFxEsDateTime: string = "***";
+
   let items: Array<Item> = new Array(8).fill({
     datetime: 'xxx',
     okinawa: '----',
@@ -40,6 +41,8 @@
 
   // データを取得する間隔の秒数
   const intervalTimeSec = 1 * 60;
+
+  let targetDate: string = "***";
 
   //------------------------------------------------
   // 
@@ -72,9 +75,13 @@
   * @return void
   */
   const fxEsJsonToView = (fxEsJson: FxEsJSON[]): void => {
+
+    targetDate = fxEsJson[0].DateTimeJST.substring(5, 10);
+
     fxEsJson.map((item: FxEsJSON, index: number) => {
       items[index] = {
-        datetime: item.DateTimeJST,
+//        datetime: item.DateTimeJST,
+        datetime: item.DateTimeJST.substring(11, 16),
         okinawa: item.Okinawa,
         yamagawa: item.Yamagawa,
         kokubunji: item.Kokubunji,
@@ -111,11 +118,16 @@
   <div class="infos">
     <table>
       <tr class="datetime">
-        <th>Date Time (JST)</th>
+        <!-- <th>Date Time (JST)</th>
         <th>Okinawa</th>
         <th>Yamagawa</th>
         <th>Kokubunji</th>
-        <th>Wakkanai</th>
+        <th>Wakkanai</th> -->
+        <th>{targetDate}</th>
+        <th>沖 縄</th>
+        <th>山 川</th>
+        <th>国分寺</th>
+        <th>稚 内</th>
       </tr>
       {#each items as _, i}
         <tr class="fxesdata">
