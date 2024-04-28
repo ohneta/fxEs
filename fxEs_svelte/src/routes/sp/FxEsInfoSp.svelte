@@ -1,5 +1,5 @@
 <!--
-	FxEsInfo.svelte
+	FxEsInfoSp.svelte
   fxEsデータを定期的に取得して表示する
 -->
 <script lang="ts">
@@ -87,7 +87,7 @@
 
     fxEsJson.map((item: FxEsJSON, index: number) => {
       items[index] = {
-        datetime: item.DateTimeJST,
+        datetime: item.DateTimeJST.substring(11, 16), // 時分のみ
         okinawa: item.Okinawa,
         yamagawa: item.Yamagawa,
         kokubunji: item.Kokubunji,
@@ -124,11 +124,11 @@
   <div class="infos">
     <table>
       <tr>
-        <th class="constinfo">Date Time (JST)</th>
-        <th class="constinfo">Okinawa</th>
-        <th class="constinfo">Yamagawa</th>
-        <th class="constinfo">Kokubunji</th>
-        <th class="constinfo">Wakkanai</th>
+        <th class="constinfo">{targetDate}</th>
+        <th class="constinfo">沖 縄</th>
+        <th class="constinfo">山 川</th>
+        <th class="constinfo">国分寺</th>
+        <th class="constinfo">稚 内</th>
       </tr>
       {#each items as _, i}
         <tr class="fxesdata">

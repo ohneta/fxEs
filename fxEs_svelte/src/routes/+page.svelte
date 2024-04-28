@@ -26,5 +26,6 @@
 <h4>表示サンプル</h4>
 <FxEsInfo />
 
-<a href="https://wdc.nict.go.jp/Ionosphere/realtime/latest-fxEs.html">NICT fxEsの本家</a>
+<a href="sp">スマートフォン用</a><br />
+<a href="https://wdc.nict.go.jp/Ionosphere/realtime/latest-fxEs.html">NICT fxEs</a>
 
