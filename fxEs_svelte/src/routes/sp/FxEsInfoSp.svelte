@@ -136,11 +136,11 @@
 
             {#if items[i].okinawa == '----'}
               <td class="nonFreq">{items[i].okinawa}</td>
-            {:else if Number(items[i].okinawa) > 9}
+            {:else if Number(items[i].okinawa) >= 9}
               <td class="over9Freq">{items[i].okinawa}</td>
-            {:else if Number(items[i].okinawa) > 8}
+            {:else if Number(items[i].okinawa) >= 8}
               <td class="over8Freq">{items[i].okinawa}</td>
-            {:else if Number(items[i].okinawa) > 7}
+            {:else if Number(items[i].okinawa) >= 7}
               <td class="over7Freq">{items[i].okinawa}</td>
             {:else}
               <td class="under7Freq">{items[i].okinawa}</td>
@@ -148,11 +148,11 @@
 
             {#if items[i].yamagawa == '----'}
               <td class="nonFreq">{items[i].yamagawa}</td>
-            {:else if Number(items[i].yamagawa) > 9}
+            {:else if Number(items[i].yamagawa) >= 9}
               <td class="over9Freq">{items[i].yamagawa}</td>
-            {:else if Number(items[i].yamagawa) > 8}
+            {:else if Number(items[i].yamagawa) >= 8}
               <td class="over8Freq">{items[i].yamagawa}</td>
-            {:else if Number(items[i].yamagawa) > 7}
+            {:else if Number(items[i].yamagawa) >= 7}
               <td class="over7Freq">{items[i].yamagawa}</td>
             {:else}
               <td class="under7Freq">{items[i].yamagawa}</td>
@@ -160,11 +160,11 @@
 
             {#if items[i].kokubunji == '----'}
               <td class="nonFreq">{items[i].kokubunji}</td>
-            {:else if Number(items[i].kokubunji) > 9}
+            {:else if Number(items[i].kokubunji) >= 9}
               <td class="over9Freq">{items[i].kokubunji}</td>
-            {:else if Number(items[i].kokubunji) > 8}
+            {:else if Number(items[i].kokubunji) >= 8}
               <td class="over8Freq">{items[i].kokubunji}</td>
-            {:else if Number(items[i].kokubunji) > 7}
+            {:else if Number(items[i].kokubunji) >= 7}
               <td class="over7Freq">{items[i].kokubunji}</td>
             {:else}
               <td class="under7Freq">{items[i].kokubunji}</td>
@@ -172,11 +172,11 @@
 
             {#if items[i].wakkanai == '----'}
               <td class="nonFreq">{items[i].wakkanai}</td>
-            {:else if Number(items[i].wakkanai) > 9}
+            {:else if Number(items[i].wakkanai) >= 9}
               <td class="over9Freq">{items[i].wakkanai}</td>
-            {:else if Number(items[i].wakkanai) > 8}
+            {:else if Number(items[i].wakkanai) >= 8}
               <td class="over8Freq">{items[i].wakkanai}</td>
-            {:else if Number(items[i].wakkanai) > 7}
+            {:else if Number(items[i].wakkanai) >= 7}
               <td class="over7Freq">{items[i].wakkanai}</td>
             {:else}
               <td class="under7Freq">{items[i].wakkanai}</td>
